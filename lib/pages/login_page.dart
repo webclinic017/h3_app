@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> initPlatformState() async {
     if (!mounted) return;
 
-    // await SqlUtils.instance.open();
+    await SqlUtils.instance.open();
   }
 
   @override

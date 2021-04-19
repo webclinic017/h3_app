@@ -129,6 +129,9 @@ class Constants {
 
   /// 银行卡支付
   static const String PAYMODE_CODE_BANK = "03";
+
+  /// 标识不需要需要校验权限
+  static const String PERMISSION_CODE = "__PC__";
 }
 
 class ConfigConstant {

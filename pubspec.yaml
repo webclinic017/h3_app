@@ -59,6 +59,8 @@ dependencies:
   encrypt: ^4.1.0
   string_unescape: ^1.5.1
   barcode_scan: ^3.0.1
+  back_button_interceptor: ^4.4.0
+  flutter_bcrypt: ^1.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
