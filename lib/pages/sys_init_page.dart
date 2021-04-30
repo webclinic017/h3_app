@@ -99,8 +99,11 @@ class _SysInitPageState extends State<SysInitPage>
 
               Future.delayed(Duration(milliseconds: 100)).then((e) {
                 NavigatorUtils.instance.push(
-                    context, RouterManager.REGISTER_PAGE,
-                    replace: true, clearStack: true);
+                    // context, RouterManager.REGISTER_PAGE,
+                    context,
+                    RouterManager.LOGIN_PAGE,
+                    replace: true,
+                    clearStack: true);
               });
             }
           },

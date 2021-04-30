@@ -16,7 +16,7 @@ import 'blocs/app_bloc.dart';
 import 'blocs/authc_bloc.dart';
 // import 'blocs/cashier_bloc.dart';
 // import 'blocs/download_bloc.dart';
-import 'blocs/login_bloc.dart';
+// import 'blocs/login_bloc.dart';
 // import 'blocs/maling_bloc.dart';
 // import 'blocs/printer_bloc.dart';
 import 'blocs/register_bloc.dart';
@@ -70,7 +70,8 @@ Locale loadSupportedLocals(locale, supportedLocales) {
   }
 
   for (final supportedLocale in supportedLocales) {
-    if (supportedLocale.languageCode == locale.languageCode && supportedLocale.countryCode == locale.countryCode) {
+    if (supportedLocale.languageCode == locale.languageCode &&
+        supportedLocale.countryCode == locale.countryCode) {
       return supportedLocale;
     }
   }
@@ -155,7 +156,8 @@ class Global {
   Future<List<Config>> _initConfig() async {
     List<Config> result;
     try {
-      String sql = "select id, tenantId, `group`, keys, initValue, `values`,clouds, createUser, createDate, modifyUser, modifyDate from pos_config";
+      String sql =
+          "select id, tenantId, `group`, keys, initValue, `values`,clouds, createUser, createDate, modifyUser, modifyDate from pos_config";
       var db = await SqlUtils.instance.open();
       List<Map<String, dynamic>> lists = await db.rawQuery(sql);
 
@@ -174,14 +176,16 @@ class Global {
   }
 
   ///获取系统抹零设置配置参数
-  Future<Tuple2<bool, String>> saveConfig(String group, String keys, String initValue, String values) async {
+  Future<Tuple2<bool, String>> saveConfig(
+      String group, String keys, String initValue, String values) async {
     bool result = true;
     String message = "参数更新成功";
     try {
       var queues = new Queue<String>();
 
       //是否启用抹零的SQL
-      String template = "REPLACE INTO pos_config(id,tenantId,`group`,keys,initValue,`values`,createUser,createDate,modifyUser,modifyDate)VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');";
+      String template =
+          "REPLACE INTO pos_config(id,tenantId,`group`,keys,initValue,`values`,createUser,createDate,modifyUser,modifyDate)VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');";
       var sql = sprintf(template, [
         IdWorkerUtils.getInstance().generate().toString(),
         Global.instance.authc.tenantId,
@@ -277,7 +281,8 @@ class Global {
     }
 
     try {
-      String sql = "select * from pos_shift_log where status = 0 and storeId = '${authc.storeId}' and workerId = '${worker.id}' and posNo = '${authc.posNo}'";
+      String sql =
+          "select * from pos_shift_log where status = 0 and storeId = '${authc.storeId}' and workerId = '${worker.id}' and posNo = '${authc.posNo}'";
       var db = await SqlUtils.instance.open();
       List<Map<String, dynamic>> lists = await db.rawQuery(sql);
       if (lists != null && lists.length > 0) {
@@ -299,10 +304,12 @@ class Global {
         _shift.planId = "";
         _shift.name = "默认班次";
         _shift.no = batchNo.item3;
-        _shift.startTime = DateUtils.formatDate(DateTime.now(), format: "yyyy-MM-dd HH:mm:ss");
+        _shift.startTime =
+            DateUtils.formatDate(DateTime.now(), format: "yyyy-MM-dd HH:mm:ss");
         _shift.posNo = Global.instance.authc.posNo;
         _shift.imprest = 0;
-        _shift.createDate = DateUtils.formatDate(DateTime.now(), format: "yyyy-MM-dd HH:mm:ss");
+        _shift.createDate =
+            DateUtils.formatDate(DateTime.now(), format: "yyyy-MM-dd HH:mm:ss");
         _shift.createUser = Global.instance.worker.no;
 
         await db.transaction((txn) async {
@@ -369,7 +376,13 @@ class Global {
 }
 
 class TextStyles {
-  static TextStyle getTextStyle({Color color = Colors.black, double fontSize = 18, TextDecoration decoration = TextDecoration.none, FontWeight fontWeight = FontWeight.normal, double letterSpacing = 0, double wordSpacing = 0}) {
+  static TextStyle getTextStyle(
+      {Color color = Colors.black,
+      double fontSize = 18,
+      TextDecoration decoration = TextDecoration.none,
+      FontWeight fontWeight = FontWeight.normal,
+      double letterSpacing = 0,
+      double wordSpacing = 0}) {
     return TextStyle(
       decoration: decoration,
       fontFamily: 'Alibaba PuHuiTi',

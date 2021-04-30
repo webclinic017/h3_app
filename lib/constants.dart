@@ -62,6 +62,9 @@ class Constants {
     return ScreenUtils().setSp(fontSize);
   }
 
+  /// 标识不需要需要校验权限
+  static const String PERMISSION_CODE = "__PC__";
+
   ///控件颜色适配
   static Color hexStringToColor(String hex) =>
       Color(int.parse("FF${hex.substring(1)}", radix: 16));

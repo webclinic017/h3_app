@@ -19,5 +19,3 @@ void main() {
     route: window.defaultRouteName,
   ));
 }
-
-

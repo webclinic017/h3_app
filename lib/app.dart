@@ -564,7 +564,8 @@ class _StartupWidgetState extends State<StartupWidget> {
           return LoginPage();
         }
         if (state.status == AuthcStatus.Unregisted) {
-          return RegisterPage();
+          // return RegisterPage();
+          return LoginPage();
         }
 
         //等待画面
